@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ViewResolver;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 
 @Configuration
 public class WebConfig {
@@ -28,7 +29,8 @@ public class WebConfig {
         }
         return (viewName, locale) -> (model, request, response) -> {
             response.setContentType("text/html");
-            templateEngine.render(viewName + ".jte", model, new PrintWriterOutput(response.getWriter()));
+            Map<String, Object> copy = Map.copyOf(model);
+            templateEngine.render(viewName + ".jte", copy, new PrintWriterOutput(response.getWriter()));
         };
     }
 }
