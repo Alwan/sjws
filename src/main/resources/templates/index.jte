@@ -1,4 +1,6 @@
-@param java.util.Map<String, String> model
+@import app.sjws.IndexPage
+@param java.util.Map<String, Object> model
+!{IndexPage page =  (IndexPage) model.get("page");}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +9,6 @@
     <title>SJWS</title>
 </head>
 <body>
-<h1>${model.get("greetings")}</h1>
+<h1>${page.getGreetings()}</h1>
 </body>
 </html>
